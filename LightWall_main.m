@@ -7,7 +7,7 @@
 Nrows_panel1 =   6; % number of rows
 Ncols_panel1 = 150; % number of colums
 
-Nleds_panel1 = Nrows_panel1 * Ncols_panel1; % number of led
+% Nleds_panel1 = Nrows_panel1 * Ncols_panel1; % number of led
 
 % physical dimentions of the wall
 lamps_array1_posx = linspace(0, 1.8, Ncols_panel1);
@@ -26,30 +26,44 @@ for ii = 1:Ncols_panel1
   end
 end
 
+LEDs_wall.Nleds_panel1 = Nrows_panel1 * Ncols_panel1;
 
 %% Set animation parameters
 % 
 
-duration = 60; % s
+LEDs_wall.duration = 60; % s
 fps      =  1; % fps;
 
 
 %%
 figure ('units', 'normalized', 'outerposition', [0 0 1 1]);
 axh = gca;
+
+effect = 'wave_colour';
+
 %%
-for fn = 0:60
+for fn = 61:120
     %%
     fprintf('Frame number: %d\n', fn)
 
-    LEDs_wall = Effect_sunrise(LEDs_wall, fn);
-                   
+    tic
+    switch effect
+      case 'sunset'
+        LEDs_wall = Effect_sunrise(LEDs_wall, fn);
+      case 'wave_circle'
+        LEDs_wall = Effect_circleWave(LEDs_wall, fn);
+      case 'wave_colour'
+        LEDs_wall = Effect_circleWave_colour(LEDs_wall, fn);
+      otherwise
+        error('no such effect number')
+    end
+    toc            
     
 
     %% Plot 
-    
-    plot_light_wall(LEDs_wall);
-         
+    tic
+    plot_light_wall(LEDs_wall, fn, axh);
+    toc  
         
 end        
         

@@ -1,6 +1,6 @@
 %% Sun rise effect
 
-function LED_wall = Effect_sunrise(LED_wall, fn)
+function LEDs_wall = Effect_sunrise(LEDs_wall, fn)
 
     sun.size_start = 0.25;
     sun.size_end  = 0.5 ;
@@ -11,14 +11,14 @@ function LED_wall = Effect_sunrise(LED_wall, fn)
     sun.start_pos  = [ 1.6, 0.4 ];
     sun.eind_pos   = [ 1.2, 1 ];
 
-    sun_size = sun.size_start + (sun.size_end - sun.size_start) / duration;
+    sun_size = sun.size_start + (sun.size_end - sun.size_start) / LEDs_wall.duration;
     sun_posx = sun.start_pos(1) * cos(fn / (15 * pi ));
     sun_posy = sun.start_pos(2) + sun.start_pos(2) * sin(fn / (15 * pi ));
 
-    aura_size =  sun_size + aura.size_start + fn * (aura.size_end - aura.size_start) / duration;
-    sky_size  = aura_size +  sky.size_start + fn * ( sky.size_end -  sky.size_start) / duration;
+    aura_size =  sun_size + aura.size_start + fn * (aura.size_end - aura.size_start) / LEDs_wall.duration;
+    sky_size  = aura_size +  sky.size_start + fn * ( sky.size_end -  sky.size_start) / LEDs_wall.duration;
 
-    for ii = 1:Nleds_panel1
+    for ii = 1:LEDs_wall.Nleds_panel1
         pixel_var = sqrt( (LEDs_wall.(sprintf('led_lamp%d', ii)).posx - sun_posx)^2 + ...
                           (LEDs_wall.(sprintf('led_lamp%d', ii)).posy - sun_posy)^2 );
                         
