@@ -1,7 +1,7 @@
 %% function to visualise to status of the LEDs_wall struct
 %
 
-function plot_light_wall(LEDs_wall, fn, axh)
+function plot_light_wall(LEDs_wall, fn)
   
     % init picture
     I = ones(1920, 1080, 3);

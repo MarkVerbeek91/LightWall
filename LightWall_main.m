@@ -71,7 +71,7 @@ for fn = 0:120
 
     %% Plot 
     tic
-    plot_light_wall(LEDs_wall, fn, axh);
+    plot_light_wall(LEDs_wall, fn);
     toc  
         
 end        
