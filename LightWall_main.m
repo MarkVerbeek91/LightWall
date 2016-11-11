@@ -43,13 +43,13 @@ fps      =  1; % fps;
 
 
 %%
-figure ('units', 'normalized', 'outerposition', [0 0 1 1]);
+% figure ('units', 'normalized', 'outerposition', [0 0 1 1]);
 % axh = gca;
 
-effect = 'wave_colour2';
+effect = 'random';
 
 %%
-for fn = 0:120
+for fn = 0:40
     %%
     fprintf('Frame number: %d\n', fn)
 
@@ -63,6 +63,8 @@ for fn = 0:120
         LEDs_wall = Effect_circleWave_colour(LEDs_wall, fn);
       case 'wave_colour2'
         LEDs_wall = Effect_circleWave_colour2(LEDs_wall, fn);
+      case 'random' 
+        LEDs_wall = Effect_random(LEDs_wall);
       otherwise
         error('no such effect number')
     end
