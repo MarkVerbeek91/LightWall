@@ -10,8 +10,13 @@ Ncols_panel1 = 150; % number of colums
 % Nleds_panel1 = Nrows_panel1 * Ncols_panel1; % number of led
 
 % physical dimentions of the wall
-lamps_array1_posx = linspace(0, 1.8, Ncols_panel1);
-lamps_array1_posy = linspace(0.2, 1, Nrows_panel1);
+x_max = 2.0;
+x_min = 0.0;
+y_max = 1.0;
+y_min = 0.0;
+
+lamps_array1_posx = linspace(x_min, x_max, Ncols_panel1);
+lamps_array1_posy = linspace(x_min, x_max, Nrows_panel1);
 
 
 %% INIT LEDs
@@ -27,6 +32,8 @@ for ii = 1:Ncols_panel1
 end
 
 LEDs_wall.Nleds_panel1 = Nrows_panel1 * Ncols_panel1;
+LEDs_wall.xdim = [x_min, x_max];
+LEDs_wall.ydim = [y_min, y_max];
 
 %% Set animation parameters
 % 
@@ -37,12 +44,12 @@ fps      =  1; % fps;
 
 %%
 figure ('units', 'normalized', 'outerposition', [0 0 1 1]);
-axh = gca;
+% axh = gca;
 
-effect = 'wave_colour';
+effect = 'wave_colour2';
 
 %%
-for fn = 61:120
+for fn = 0:120
     %%
     fprintf('Frame number: %d\n', fn)
 
@@ -54,6 +61,8 @@ for fn = 61:120
         LEDs_wall = Effect_circleWave(LEDs_wall, fn);
       case 'wave_colour'
         LEDs_wall = Effect_circleWave_colour(LEDs_wall, fn);
+      case 'wave_colour2'
+        LEDs_wall = Effect_circleWave_colour2(LEDs_wall, fn);
       otherwise
         error('no such effect number')
     end
